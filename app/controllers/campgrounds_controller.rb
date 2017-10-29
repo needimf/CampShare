@@ -1,10 +1,12 @@
 class CampgroundsController < ApplicationController
+  before_action :authorize, except [:index, :show]
+
   def index
     @campgrounds = Campground.all
   end
 
   def show
-    @campground = Campground.find(params[id])
+    @campground = Campground.find(campground_params)
   end
 
   def new
@@ -30,5 +32,11 @@ class CampgroundsController < ApplicationController
 
   def destroy
 
+  end
+
+private
+
+  def campground_params
+    params.require(:campground).permit(:title, :content)
   end
 end
