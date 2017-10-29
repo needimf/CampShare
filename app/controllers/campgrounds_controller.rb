@@ -1,5 +1,5 @@
 class CampgroundsController < ApplicationController
-  before_action :authorize, except [:index, :show]
+  before_action :authorize, except: [:index, :show]
 
   def index
     @campgrounds = Campground.all

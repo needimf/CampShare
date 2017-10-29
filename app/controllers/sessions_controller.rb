@@ -11,9 +11,10 @@ class SessionsController < ApplicationController
       flash.now.alert = "Invalid login credentials - try again!"
       render :new
     end
+  end
 
-    def destroy
+  def destroy
       session[:user_id] = nil
       redirect_to root_path, notice: "Logged out!"
-    end
+  end
 end
