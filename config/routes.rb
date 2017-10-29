@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show], shallow: true
     resources :impressions, except: [:show], shallow: true
   end
-  
+  get '/login', to: 'sessions#new'
+
 end
