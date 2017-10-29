@@ -10,10 +10,78 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029195253) do
+ActiveRecord::Schema.define(version: 20171029202301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campground_images", force: :cascade do |t|
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean "main_image"
+    t.text "caption"
+    t.bigint "campground_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campground_id"], name: "index_campground_images_on_campground_id"
+  end
+
+  create_table "campgrounds", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id"
+    t.integer "crowded_yes"
+    t.integer "crowded_no"
+    t.integer "clean_yes"
+    t.integer "clean_no"
+    t.integer "shade_yes"
+    t.integer "shade_no"
+    t.integer "privacy_yes"
+    t.integer "privacy_no"
+    t.integer "fire_yes"
+    t.integer "fire_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_campgrounds_on_user_id"
+  end
+
+  create_table "comment_images", force: :cascade do |t|
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.text "caption"
+    t.bigint "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comment_images_on_comment_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "campground_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campground_id"], name: "index_comments_on_campground_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "impressions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "campground_id"
+    t.integer "clean"
+    t.integer "crowded"
+    t.integer "shade"
+    t.integer "privacy"
+    t.integer "fire"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campground_id"], name: "index_impressions_on_campground_id"
+    t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -30,4 +98,11 @@ ActiveRecord::Schema.define(version: 20171029195253) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "campground_images", "campgrounds"
+  add_foreign_key "campgrounds", "users"
+  add_foreign_key "comment_images", "comments"
+  add_foreign_key "comments", "campgrounds"
+  add_foreign_key "comments", "users"
+  add_foreign_key "impressions", "campgrounds"
+  add_foreign_key "impressions", "users"
 end
