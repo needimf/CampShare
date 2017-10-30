@@ -1,5 +1,6 @@
 class CampgroundsController < ApplicationController
   before_action :authorize, except: [:index, :show]
+  before_action :edit_authorization, only: [:edit, :update, :destroy]
 
   def index
     @campgrounds = Campground.all
@@ -47,5 +48,9 @@ private
 
   def campground_params
     params.require(:campground).permit(:title, :content)
+  end
+
+  def edit_authorization
+    redirect_to campground_path(params[:id]), alert: "Not authorized - you did not author this campground!" if current_user != Campground.find(params[:id]).user
   end
 end
