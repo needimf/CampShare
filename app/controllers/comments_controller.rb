@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authorize
-  before_action :edit_authorize, except: [:new, :create]
+  before_action :authorize_edit, except: [:new, :create]
 
   def new
     @campground = Campground.find(params[:campground_id])
@@ -44,10 +44,5 @@ private
   
   def comment_params
       params.require(:comment).permit(:content)
-  end
-
-  def edit_authorize
-    comment = Comment.find(params[:id])
-    redirect_to campground_path(comment.campground), alert: "Not authorized - you did not author this comment!" if current_user != comment.user
   end
 end

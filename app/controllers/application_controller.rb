@@ -11,4 +11,9 @@ private
   def authorize
     redirect_to login_path, alert: "Not authorized - you must be logged in!" if current_user.nil?
   end
+
+  def authorize_edit
+    content = controller_name.classify.constantize.find(params[:id])
+    redirect_to campground_path(content.campground), alert: "Not authorized - you did not create this #{controller_name.chomp('s')}!" if current_user != content.user
+  end
 end

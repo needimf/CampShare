@@ -1,5 +1,7 @@
 class ImpressionsController < ApplicationController
   before_action :authorize
+  before_action :authorize_add_impression, only: [:new]
+  before_action :authorize_edit, except: [:new, :create]
 
   def index
 
@@ -47,5 +49,17 @@ private
 
   def impresssions_params
     params.require(:impression).permit(:clean, :crowded, :shade, :privacy, :fire)
+  end
+
+  def has_impression?
+    if current_user.impressions.find_by(campground_id: params[:campground_id])
+      return true
+    else
+      return false
+    end
+  end
+
+  def authorize_add_impression
+    redirect_to campground_path(params[:campground_id]), alert: "Not authorized - you have already submitted an impression for this campground!" if has_impression?
   end
 end
