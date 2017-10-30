@@ -6,7 +6,7 @@ class CampgroundsController < ApplicationController
   end
 
   def show
-    @campground = Campground.find(campground_params)
+    @campground = Campground.find(params[:id])
   end
 
   def new
@@ -14,9 +14,10 @@ class CampgroundsController < ApplicationController
   end
 
   def create
-    @campground = Campground.new()
+    @campground = Campground.new(campground_params)
+    @campground.user = current_user
     if @campground.save
-      redirect_to root_path
+      redirect_to campgrounds_path
     else
       render :new
     end

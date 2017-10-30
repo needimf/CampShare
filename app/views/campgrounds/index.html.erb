@@ -1,1 +1,11 @@
 <h1>Campgrounds!</h1>
+
+<div>
+  <% @campgrounds.each do |campground| %>
+    <div>
+      <h3><%= campground.title %></h3>
+      <p><%= campground.content %>...<%= link_to "Read more!", campground_path(campground) %></p>
+    </div>
+  <% end %>
+  <%= button_to "Add a campground", "/campgrounds/new", method: :get %>
+</div>
