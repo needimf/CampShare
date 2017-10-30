@@ -1,0 +1,11 @@
+<h1>Add a new comment!</h1>
+
+<%= form_for [@campground, @comment] do |f| %>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Back to campground", campground_path(@campground) %>
