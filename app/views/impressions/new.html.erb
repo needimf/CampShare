@@ -1,0 +1,42 @@
+<h1>Leave your impression!</h1>
+
+<%= form_for [@campground, @impression] do |f| %>
+  <div>
+    <%= f.label :clean, "Does this campground have clean facilities?" %><br />
+    <%= f.label :clean, "Yes" %>
+    <%= f.radio_button :clean, 1 %>
+    <%= f.label :clean, "No" %>
+    <%= f.radio_button :clean, -1 %>
+  </div>
+  <div>
+    <%= f.label :crowded, "Does this campground get crowded?" %><br />
+    <%= f.label :crowded, "Yes" %>
+    <%= f.radio_button :crowded, 1 %>
+    <%= f.label :crowded, "No" %>
+    <%= f.radio_button :crowded, -1 %>
+  </div>
+  <div>
+    <%= f.label :shade, "Does this campground have ample shade?" %><br />
+    <%= f.label :shade, "Yes" %>
+    <%= f.radio_button :shade, 1 %>
+    <%= f.label :shade, "No" %>
+    <%= f.radio_button :shade, -1 %>
+  </div>
+  <div>
+    <%= f.label :privacy, "Does this campground offer adequate privacy?" %><br />
+    <%= f.label :privacy, "Yes" %>
+    <%= f.radio_button :privacy, 1 %>
+    <%= f.label :privacy, "No" %>
+    <%= f.radio_button :privacy, -1 %>
+  </div>
+  <div>
+    <%= f.label :fire, "Does this campground have fire containment devices?" %><br />
+    <%= f.label :fire, "Yes" %>
+    <%= f.radio_button :fire, 1 %>
+    <%= f.label :fire, "No" %>
+    <%= f.radio_button :fire, -1 %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
