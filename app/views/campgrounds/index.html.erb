@@ -7,5 +7,5 @@
       <p><%= campground.content %>...<%= link_to "Read more!", campground_path(campground) %></p>
     </div>
   <% end %>
-  <%= button_to "Add a campground", "/campgrounds/new", method: :get %>
+  <%= button_to "Add a campground", new_campground_path, method: :get %>
 </div>

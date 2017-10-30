@@ -1,0 +1,19 @@
+<h1>Edit <%= @campground.title %></h1>
+
+<%= form_for @campground do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+  <div><%= f.submit "Update Campground!"%></div>
+<% end %>
+
+<p>
+  <%= link_to "Back to #{@campground.title}", campground_path(@campground) %>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <%= link_to "Back to all campgrounds", campgrounds_path %>
+</p>

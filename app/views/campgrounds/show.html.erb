@@ -1,0 +1,10 @@
+<h1><%= @campground.title %></h1>
+<p><%= link_to "Back to all Campgrounds", campgrounds_path %>  
+  <% if current_user == @campground.user %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Edit Campground", edit_campground_path %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete Campground", campground_path(@campground), method: :delete, data: { confirm: "Are you sure you want to delete this campground?"} %>
+  <% end %>
+</p>
+<br>
+<h5>By <%= "#{@campground.user.first_name} #{@campground.user.last_name}" %></h5>
+<p><%= @campground.content %>

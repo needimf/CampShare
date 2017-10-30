@@ -28,11 +28,19 @@ class CampgroundsController < ApplicationController
   end
 
   def update
+    @campground = Campground.find(params[:id])
 
+    if @campground.update_attributes(campground_params)
+      redirect_to campground_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @campground = Campground.find(params[:id])
+    @campground.destroy
+    redirect_to campgrounds_path
   end
 
 private
