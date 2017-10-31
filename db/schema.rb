@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030162535) do
+ActiveRecord::Schema.define(version: 20171031044430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20171030162535) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "contributor_applications", force: :cascade do |t|
+    t.text "content"
+    t.boolean "pending"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contributor_applications_on_user_id"
+  end
+
   create_table "impressions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "campground_id"
@@ -93,6 +102,7 @@ ActiveRecord::Schema.define(version: 20171030162535) do
   add_foreign_key "comment_images", "comments"
   add_foreign_key "comments", "campgrounds"
   add_foreign_key "comments", "users"
+  add_foreign_key "contributor_applications", "users"
   add_foreign_key "impressions", "campgrounds"
   add_foreign_key "impressions", "users"
 end

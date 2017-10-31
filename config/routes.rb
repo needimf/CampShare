@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :impressions, except: [:show], shallow: true
   end
   get '/login', to: 'sessions#new'
+  get '/admin', to: 'users#admin', as: :admin
 
 end

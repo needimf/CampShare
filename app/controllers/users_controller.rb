@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     end
   end
 
+  # def admin
+  #   @contributor_applications = ContributorApplication.all
+  # end
+
 private
 
   def user_params
