@@ -19,9 +19,7 @@ class CampgroundsController < ApplicationController
     @campground = Campground.new(campground_params)
     @campground.user = current_user
     if @campground.save
-      if params[:images]
-        params[:images].each { |image| @campground.campground_images.create(image: image) }
-      end
+      params[:images].each { |image| @campground.campground_images.create(image: image) } if params[:images]
       redirect_to campgrounds_path
     else
       render :new

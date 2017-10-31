@@ -1,9 +1,15 @@
 <h1>Add a new comment!</h1>
 
-<%= form_for [@campground, @comment] do |f| %>
+<%= form_for [@campground, @comment], html: { multipart: true } do |f| %>
   <div>
     <%= f.label :content %>
     <%= f.text_area :content %>
+  </div>
+  <div>
+  <%= f.label :comment_images %>
+    <div>
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
+    </div>
   </div>
   <%= f.submit %>
 <% end %>

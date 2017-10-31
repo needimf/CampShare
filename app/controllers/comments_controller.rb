@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     @comment.campground = @campground
     @comment.user = current_user
     if @comment.save
+      params[:images].each { |image| @comment.comment_images.create(image: image) } if params[:images]
       redirect_to campground_path(@comment.campground)
     else
       render :new
