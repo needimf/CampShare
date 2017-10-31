@@ -1,6 +1,7 @@
 class CampgroundsController < ApplicationController
   before_action :authorize, except: [:index, :show]
-  before_action :edit_authorize, only: [:edit, :update, :destroy]
+  before_action :authorize_edit, only: [:edit, :update, :destroy]
+  before_action :authorize_contributor, except: [:index, :show]
 
   def index
     @campgrounds = Campground.all
@@ -50,7 +51,11 @@ private
     params.require(:campground).permit(:title, :content)
   end
 
-  def edit_authorize
+  def authorize_contributor
+    redirect_to root_path, alert: "You are not a contributor" if !current_user.contributor
+  end
+
+  def authorize_edit
     redirect_to campground_path(params[:id]), alert: "Not authorized - you did not author this campground!" if current_user != Campground.find(params[:id]).user
   end
 end

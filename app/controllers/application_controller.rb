@@ -14,6 +14,6 @@ private
 
   def authorize_edit
     content = controller_name.classify.constantize.find(params[:id])
-    redirect_to campground_path(content.campground), alert: "Not authorized - you did not create this #{controller_name.chomp('s')}!" if current_user != content.user
+    redirect_to campground_path(content.campground), alert: "You did not create this #{controller_name.chomp('s')}!" if current_user != content.user
   end
 end

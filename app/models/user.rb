@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   #security and validations
   has_secure_password
-  validates :email, presence: true, uniqueness: true
-  validates :password, length: { minimum: 6 }
+  validates :email, presence: true, uniqueness: true, on: :create
+  validates :password, length: { minimum: 6 }, on: :create
 
   def full_name
     "#{self.first_name} #{self.last_name}"

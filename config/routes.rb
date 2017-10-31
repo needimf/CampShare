@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'campgrounds#index'
 
   resources :users, only: [:new, :create] do
-    resources :contributor_applications, only: [:new, :create, :destroy], shallow: true
+    resources :contributor_applications, only: [:new, :create, :update], shallow: true
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :campgrounds do

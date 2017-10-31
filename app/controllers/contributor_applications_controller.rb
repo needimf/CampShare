@@ -17,8 +17,12 @@ class ContributorApplicationsController < ApplicationController
     end
   end
 
-  def destroy
-
+  def update
+    @contributor_application = ContributorApplication.find(params[:id])
+    
+    @contributor_application.user.update_attributes(contributor: true) if params[:approved] == "yes"
+    @contributor_application.update_attributes(pending: false)
+    redirect_to admin_path
   end
 
 private

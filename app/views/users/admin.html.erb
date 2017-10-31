@@ -1,0 +1,14 @@
+<h1>Pending Contributor Applications</h1>
+
+<div class="container">
+  <% @pending_contributor_applications.each do |app| %>
+    <div class="row">
+      <div class="col s4"><%= app.user.full_name %></div>
+      <div class="col s6"><%= app.content %></div>
+      <div class="col s2">
+        <%= link_to "Yes", contributor_application_path(app, approved: "yes"), method: :put %>
+        <%= link_to "No", contributor_application_path(app, approved: "no"), method: :put %>
+      </div>
+    </div>
+  <% end %>
+</div>
