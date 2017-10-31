@@ -1,9 +1,11 @@
 class User < ApplicationRecord
-  #relations
   has_many :campgrounds, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :impressions, dependent: :destroy
   has_many :contributor_applications, dependent: :destroy
+
+  has_attached_file :image, styles: { medium: "500x500>", thumb: "250x250>" }, presence: true
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   #security and validations
   has_secure_password

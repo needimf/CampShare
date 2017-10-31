@@ -19,6 +19,9 @@ class CampgroundsController < ApplicationController
     @campground = Campground.new(campground_params)
     @campground.user = current_user
     if @campground.save
+      if params[:images]
+        params[:images].each { |image| @campground.campground_images.create(image: image) }
+      end
       redirect_to campgrounds_path
     else
       render :new
@@ -48,7 +51,7 @@ class CampgroundsController < ApplicationController
 private
 
   def campground_params
-    params.require(:campground).permit(:title, :content)
+    params.require(:campground).permit(:title, :content, :image)
   end
 
   def authorize_contributor

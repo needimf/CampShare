@@ -1,6 +1,6 @@
 <h1>Create a new campground!</h1>
 
-<%= form_for @campground do |f| %>
+<%= form_for @campground, html: { multipart: true } do |f| %>
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -8,6 +8,12 @@
   <div>
     <%= f.label :content %>
     <%= f.text_area :content %>
+  </div>
+  <div>
+  <%= f.label :campground_images %>
+    <div>
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
+    </div>
   </div>
   <div><%= f.submit %></div>
 <% end %>
