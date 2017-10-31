@@ -1,12 +1,24 @@
-<h1>Campgrounds!</h1>
-<p><%= alert %></p>
-
-<div>
-  <% @campgrounds.each do |campground| %>
-    <div>
-      <h3><%= campground.title %></h3>
-      <p><%= campground.content %>...<%= link_to "Read more!", campground_path(campground) %></p>
+<div class="row container">
+  <div class="col s12">
+    <h1>Campgrounds</h1>
+  </div>
+</div>
+<div class="row container">
+  <div class="col s12">
+    <p><%= alert %></p>
+  </div>
+</div>
+<% @campgrounds.each do |campground| %>
+  <div class="parallax-container">
+    <div class="parallax"><%= image_tag campground.campground_images.find_by(main_image: true).image.url %></div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <h3 class="header"><%= campground.title %></h3>
+      <p class="grey-text"><%= campground.content %>...<%= link_to "Read more!", campground_path(campground) %></p>
     </div>
-  <% end %>
+  </div>
+<% end %>
+<div class="row container">
   <%= button_to "Add a campground", new_campground_path, method: :get %>
 </div>
