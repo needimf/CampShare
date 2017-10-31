@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :campgrounds, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :impressions, dependent: :destroy
+  has_many :contributor_applications, dependent: :destroy
 
   #security and validations
   has_secure_password

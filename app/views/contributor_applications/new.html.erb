@@ -1,0 +1,7 @@
+<h1>Become a Contributor!</h1>
+
+<%= form_for [@user, @contributor_application] do |f| %>
+  <%= f.label :content, "Why do you want to become a contributor?" %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
