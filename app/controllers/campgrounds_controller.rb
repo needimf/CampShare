@@ -5,6 +5,7 @@ class CampgroundsController < ApplicationController
 
   def index
     @campgrounds = Campground.all
+    @campground = Campground.new
   end
 
   def show
@@ -20,7 +21,7 @@ class CampgroundsController < ApplicationController
     @campground.user = current_user
     if @campground.save
       params[:images].each { |image| @campground.campground_images.create(image: image) } if params[:images]
-      @campground.campground_images.first.update_attributes(main_image: true)
+      @campground.campground_images.first.update_attributes(main_image: true) if params[:images]
       redirect_to campgrounds_path
     else
       render :new

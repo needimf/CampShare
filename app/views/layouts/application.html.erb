@@ -32,5 +32,12 @@
       </nav>
     </div>
     <%= yield %>
+    <% if !current_user.nil? && current_user.contributor %>
+      <div class="fixed-action-btn">
+        <%= link_to "#new-campground", class: "btn-floating btn-large modal-trigger teal darken-4" do %>
+          <i class="large material-icons">add</i>
+        <% end %>
+      </div>
+    <% end %>
   </body>
 </html>
