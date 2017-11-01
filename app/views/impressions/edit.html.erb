@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <h1 class="col s12">Edit your impression for <%= @impression.campground.title %>!</h1>
+  </div>
+  <div class="row">
+    <%= form_for @impression, class: "col s12" do |f| %>
+      <div class="row">
+        <h5 class="col s12">Does this campground have clean facilities?</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <p class="col s12">  
+          <%= f.radio_button :clean, 1 %>
+          <%= f.label :clean, "Yes", for: "impression_clean_1" %>
+        </p>
+        <p class="col s12">
+          <%= f.radio_button :clean, -1 %>
+          <%= f.label :clean, "No", for: "impression_clean_-1" %>
+        </p>
+      </div>
+      <div class="row">
+        <h5 class="col s12">Does this campground get crowded?</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <p class="col s12">  
+          <%= f.radio_button :crowded, 1 %>
+          <%= f.label :crowded, "Yes", for: "impression_crowded_1" %>
+        </p>
+        <p class="col s12">
+          <%= f.radio_button :crowded, -1 %>
+          <%= f.label :crowded, "No", for: "impression_crowded_-1" %>
+        </p>
+      </div>
+      <div class="row">
+        <h5 class="col s12">Does this campground offer adequate privacy?</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <p class="col s12">  
+          <%= f.radio_button :privacy, 1 %>
+          <%= f.label :privacy, "Yes", for: "impression_privacy_1" %>
+        </p>
+        <p class="col s12">
+          <%= f.radio_button :privacy, -1 %>
+          <%= f.label :privacy, "No", for: "impression_privacy_-1" %>
+        </p>
+      </div>
+      <div class="row">
+        <h5 class="col s12">Does this campground have ample shade?</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <p class="col s12">  
+          <%= f.radio_button :shade, 1 %>
+          <%= f.label :shade, "Yes", for: "impression_shade_1" %>
+        </p>
+        <p class="col s12">
+          <%= f.radio_button :shade, -1 %>
+          <%= f.label :shade, "No", for: "impression_shade_-1" %>
+        </p>
+      </div>
+      <div class="row">
+        <h5 class="col s12">Does this campground have fire pits?</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <p class="col s12">  
+          <%= f.radio_button :fire, 1 %>
+          <%= f.label :fire, "Yes", for: "impression_fire_1" %>
+        </p>
+        <p class="col s12">
+          <%= f.radio_button :fire, -1 %>
+          <%= f.label :fire, "No", for: "impression_fire_-1" %>
+        </p>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Edit
+            <i class="material-icons right">mode_edit</i>
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

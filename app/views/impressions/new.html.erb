@@ -33,20 +33,6 @@
         </p>
       </div>
       <div class="row">
-        <h5 class="col s12">Does this campground have ample shade?</h5>
-      </div>
-      <div class="divider"></div>
-      <div class="row">
-        <p class="col s12">  
-          <%= f.radio_button :shade, 1 %>
-          <%= f.label :shade, "Yes", for: "impression_shade_1" %>
-        </p>
-        <p class="col s12">
-          <%= f.radio_button :shade, -1 %>
-          <%= f.label :shade, "No", for: "impression_shade_-1" %>
-        </p>
-      </div>
-      <div class="row">
         <h5 class="col s12">Does this campground offer adequate privacy?</h5>
       </div>
       <div class="divider"></div>
@@ -58,6 +44,20 @@
         <p class="col s12">
           <%= f.radio_button :privacy, -1 %>
           <%= f.label :privacy, "No", for: "impression_privacy_-1" %>
+        </p>
+      </div>
+      <div class="row">
+        <h5 class="col s12">Does this campground have ample shade?</h5>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <p class="col s12">  
+          <%= f.radio_button :shade, 1 %>
+          <%= f.label :shade, "Yes", for: "impression_shade_1" %>
+        </p>
+        <p class="col s12">
+          <%= f.radio_button :shade, -1 %>
+          <%= f.label :shade, "No", for: "impression_shade_-1" %>
         </p>
       </div>
       <div class="row">

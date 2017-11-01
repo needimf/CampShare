@@ -27,58 +27,63 @@
     <div class="col s6">
      <h3>Impressions</h3>
     </div>
-    <div class="col s6">
-      <%= link_to "Provide your impression!", new_campground_impression_path(@campground) %>
-    </div>
+    <% if !current_user.nil? %>
+      <% if current_user.impressions.find_by(campground_id: @campground) %>
+        <div class="col s6">
+          <%= link_to "Edit your impression!", edit_impression_path(current_user.impressions.find_by(campground_id: @campground)), class: "waves-effect waves-light btn" %>
+        </div>
+      <% else %>
+        <div class="col s6">
+          <%= link_to "Provide your impression!", new_campground_impression_path(@campground), class: "waves-effect waves-light btn" %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="row">
     <h5 class="col s12">Is this campground...</h5>
   </div>
   <% @counts = @campground.count_impressions_totals %>
   <div class="row">
-    <div class="col s2 offset-s1">
+    <div class="col s4">
       <div class="row">
         <h6 class="col s12">...clean?</h6>
       </div>
       <div class="row">
-        <div class="ct-chart ct-golden-section" id="chart1"></div>
-        <p class="col s12">Yes: <%= @counts[:clean_yes] %> | No: <%= @counts[:clean_no] %></p>
+        <div class="ct-chart ct-golden-section col s12" id="chart1"></div>
       </div>
     </div>
-    <div class="col s2">
+    <div class="col s4">
       <div class="row">
         <h6 class="col s12">...crowded?</h6>
       </div>
       <div class="row">
-        <div class="ct-chart ct-golden-section" id="chart2"></div>
-        <p class="col s12">Yes: <%= @counts[:crowded_yes] %> | No: <%= @counts[:crowded_no] %></p>
+        <div class="ct-chart ct-golden-section col s12" id="chart2"></div>
       </div>
     </div>
-    <div class="col s2">
+    <div class="col s4">
       <div class="row">
         <h6 class="col s12">...private?</h6>
       </div>
       <div class="row">
-        <div class="ct-chart ct-golden-section" id="chart3"></div>
-        <p class="col s12">Yes: <%= @counts[:privacy_yes] %> | No: <%= @counts[:privacy_no] %></p>
+        <div class="ct-chart ct-golden-section col s12" id="chart3"></div>
       </div>
     </div>
-    <div class="col s2">
+  </div>
+  <div class="row">
+    <div class="col s4 offset-s2 ">
       <div class="row">
         <h6 class="col s12">...shaded?</h6>
       </div>
       <div class="row">
-        <div class="ct-chart ct-golden-section" id="chart4"></div>
-        <p class="col s12">Yes: <%= @counts[:shade_yes] %> | No: <%= @counts[:shade_no] %></p>
+        <div class="ct-chart ct-golden-section col s12" id="chart4"></div>
       </div>
     </div>
-    <div class="col s2">
+    <div class="col s4">
       <div class="row">
         <h6 class="col s12">...fire tolerant?</h6>
       </div>
       <div class="row">
-        <div class="ct-chart ct-golden-section" id="chart5"></div>
-        <p class="col s12">Yes: <%= @counts[:fire_yes] %> | No: <%= @counts[:fire_no] %></p>
+        <div class="ct-chart ct-golden-section col s12" id="chart5"></div>
       </div>
     </div>
   </div>
@@ -86,7 +91,8 @@
     <h3 class="col s12">Comments</h3>
   </div>
   <% @campground.comments.each do |comment| %>
-    <div class="row">
+    <div class="divider"></div>
+    <div class="row section">
       <div class="col s3">
         <div class="chip">
           <%= image_tag comment.user.image.url, alt: "Contact Person" %>
@@ -141,53 +147,59 @@
   });
 
   var yesImpressions = <%= [@counts[:clean_yes], @counts[:crowded_yes], @counts[:privacy_yes], @counts[:shade_yes], @counts[:fire_yes]] %>;
-  console.log(yesImpressions)
   var noImpressions = <%= [@counts[:clean_no], @counts[:crowded_no], @counts[:privacy_no], @counts[:shade_no], @counts[:fire_no]] %>;
-  console.log(noImpressions)
+  var sums = [];
+  function calculateImpressionsTotals () {
+    for (var i = 0; i < yesImpressions.length; i++) {
+      sums.push(2 * (yesImpressions[i] + noImpressions [i]));
+    };
+  }
+  calculateImpressionsTotals();
+  console.log(sums)
 
   new Chartist.Pie('#chart1', {
     series: [yesImpressions[0], noImpressions[0]]
   }, {
     donut: true,
-    donutWidth: 60,
+    donutWidth: 30,
     startAngle: 270,
-    total: (yesImpressions[0] + noImpressions[0]),
-    showLabel: false
+    total: sums[0],
+    showLabel: true
   });
   new Chartist.Pie('#chart2', {
     series: [yesImpressions[1], noImpressions[1]]
   }, {
     donut: true,
-    donutWidth: 60,
+    donutWidth: 30,
     startAngle: 270,
-    total: (yesImpressions[1] + noImpressions[1]),
-    showLabel: false
+    total: sums[1],
+    showLabel: true
   });
   new Chartist.Pie('#chart3', {
     series: [yesImpressions[2], noImpressions[2]]
   }, {
     donut: true,
-    donutWidth: 60,
+    donutWidth: 30,
     startAngle: 270,
-    total: (yesImpressions[2] + noImpressions[2]),
-    showLabel: false
+    total: sums[2],
+    showLabel: true
   });
   new Chartist.Pie('#chart4', {
     series: [yesImpressions[3], noImpressions[3]]
   }, {
     donut: true,
-    donutWidth: 60,
+    donutWidth: 30,
     startAngle: 270,
-    total: (yesImpressions[3] + noImpressions[3]),
-    showLabel: false
+    total: sums[3],
+    showLabel: true
   });
   new Chartist.Pie('#chart5', {
     series: [yesImpressions[4], noImpressions[4]]
   }, {
     donut: true,
-    donutWidth: 60,
+    donutWidth: 30,
     startAngle: 270,
-    total: (yesImpressions[4] + noImpressions[4]),
-    showLabel: false
+    total: sums[4],
+    showLabel: true
   });
 </script>
