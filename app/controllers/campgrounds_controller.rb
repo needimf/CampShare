@@ -4,7 +4,7 @@ class CampgroundsController < ApplicationController
   before_action :authorize_contributor, except: [:index, :show]
 
   def index
-    @campgrounds = Campground.all
+    @campgrounds = Campground.all.reverse
     @campground = Campground.new
   end
 

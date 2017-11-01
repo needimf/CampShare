@@ -10,43 +10,56 @@
   </div>
 <% end %>
 
-<div id="new-campground" class="modal modal-fixed-footer">
-  <div class="modal-content container">
-    <div class="row">
-      <h3>Create a new campground!</h3>
-    </div>
-    <div class="row">
-      <%= form_for @campground, class: "col s12", html: { multipart: true } do |f| %>
-        <div class="row">
-          <div class="input-field col s12">
-            <%= f.text_field :title %>
-            <%= f.label :title %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <%= f.text_area :content, class: "materialize-textarea" %>
-            <%= f.label :content %>
-          </div>
-        </div>
-        <div class="row">
-          <%= f.label :campground_images, class: "col s12" %>
-        </div>  
-        <div class="row">
-          <div class="input-field file-field col s12">
-            <div class="btn">
-              <span>Select Images</span>
-              <%= file_field_tag "images[]", type: :file, multiple: true %>
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+<% if !current_user.nil? && current_user.contributor %>
+  <div id="new-campground" class="modal modal-fixed-footer">
+    <div class="modal-content container">
+      <div class="row">
+        <h3>Create a new campground!</h3>
+      </div>
+      <div class="row">
+        <%= form_for @campground, class: "col s12", html: { multipart: true } do |f| %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.text_field :title %>
+              <%= f.label :title %>
             </div>
           </div>
-        </div>
-      <% end %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.text_area :content, class: "materialize-textarea" %>
+              <%= f.label :content %>
+            </div>
+          </div>
+          <div class="row">
+            <%= f.label :campground_images, class: "col s12" %>
+          </div>  
+          <div class="row">
+            <div class="input-field file-field col s12">
+              <div class="btn">
+                <span>Select Images</span>
+                <%= file_field_tag "images[]", type: :file, multiple: true %>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input type="submit" value="Create Campground" form="new_campground" class="modal-action modal-close waves-effect waves-green btn-flat">
     </div>
   </div>
-  <div class="modal-footer">
-    <input type="submit" value="Create Campground" form="new_campground" class="modal-action modal-close waves-effect waves-green btn-flat">
-  </div>
-</div>
+<% end %>
+
+<script>
+  $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+
+  $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>
