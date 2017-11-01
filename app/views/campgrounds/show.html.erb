@@ -19,46 +19,175 @@
       </div>
     <% end %>
   </div>
+  <div class="row">
     <h5>By <%= @campground.user.full_name %></h5>
-    <p><%= @campground.content %>
-    <div>
-      <h3>Impressions | <%= link_to "Provide your impression!", new_campground_impression_path(@campground) %></h3>
-      <% @counts = @campground.count_impressions_totals %>
-      <h4>Is this campground clean?</h4>
-      <p>Yes: <%= @counts[:clean_yes] %> | No: <%= @counts[:clean_no] %></p>
-      <h4>Is this campground crowded?</h4>
-      <p>Yes: <%= @counts[:crowded_yes] %> | No: <%= @counts[:crowded_no] %></p>
-      <h4>Is this campground private?</h4>
-      <p>Yes: <%= @counts[:privacy_yes] %> | No: <%= @counts[:privacy_no] %></p>
-      <h4>Is this campground shaded?</h4>
-      <p>Yes: <%= @counts[:shade_yes] %> | No: <%= @counts[:shade_no] %></p>
-      <h4>Is this campground fire accepting?</h4>
-      <p>Yes: <%= @counts[:fire_yes] %> | No: <%= @counts[:fire_no] %></p>
-      <h3>Comments</h3>
-      <%= link_to "Add a comment", new_campground_comment_path(@campground) %>
-      <% @campground.comments.each do |comment| %>
-      <div>
-        <p><%= comment.content %>&nbsp;-&nbsp;<%= comment.user.full_name %>
-        <% if current_user == comment.user %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Edit", edit_comment_path(comment) %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?"} %>
-        <% end %>
-        </p>
+    <p><%= simple_format(@campground.content) %>
+  </div>
+  <div class="row">
+    <div class="col s6">
+     <h3>Impressions</h3>
+    </div>
+    <div class="col s6">
+      <%= link_to "Provide your impression!", new_campground_impression_path(@campground) %>
+    </div>
+  </div>
+  <div class="row">
+    <h5 class="col s12">Is this campground...</h5>
+  </div>
+  <% @counts = @campground.count_impressions_totals %>
+  <div class="row">
+    <div class="col s2 offset-s1">
+      <div class="row">
+        <h6 class="col s12">...clean?</h6>
       </div>
+      <div class="row">
+        <div class="ct-chart ct-golden-section" id="chart1"></div>
+        <p class="col s12">Yes: <%= @counts[:clean_yes] %> | No: <%= @counts[:clean_no] %></p>
+      </div>
+    </div>
+    <div class="col s2">
+      <div class="row">
+        <h6 class="col s12">...crowded?</h6>
+      </div>
+      <div class="row">
+        <div class="ct-chart ct-golden-section" id="chart2"></div>
+        <p class="col s12">Yes: <%= @counts[:crowded_yes] %> | No: <%= @counts[:crowded_no] %></p>
+      </div>
+    </div>
+    <div class="col s2">
+      <div class="row">
+        <h6 class="col s12">...private?</h6>
+      </div>
+      <div class="row">
+        <div class="ct-chart ct-golden-section" id="chart3"></div>
+        <p class="col s12">Yes: <%= @counts[:privacy_yes] %> | No: <%= @counts[:privacy_no] %></p>
+      </div>
+    </div>
+    <div class="col s2">
+      <div class="row">
+        <h6 class="col s12">...shaded?</h6>
+      </div>
+      <div class="row">
+        <div class="ct-chart ct-golden-section" id="chart4"></div>
+        <p class="col s12">Yes: <%= @counts[:shade_yes] %> | No: <%= @counts[:shade_no] %></p>
+      </div>
+    </div>
+    <div class="col s2">
+      <div class="row">
+        <h6 class="col s12">...fire tolerant?</h6>
+      </div>
+      <div class="row">
+        <div class="ct-chart ct-golden-section" id="chart5"></div>
+        <p class="col s12">Yes: <%= @counts[:fire_yes] %> | No: <%= @counts[:fire_no] %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="col s12">Comments</h3>
+  </div>
+  <% @campground.comments.each do |comment| %>
+    <div class="row">
+      <div class="col s3">
+        <div class="chip">
+          <%= image_tag comment.user.image.url, alt: "Contact Person" %>
+          <%= comment.user.full_name %>
+        </div>        
+      </div>
+      <div class="col s7">
+        <p><%= simple_format(comment.content) %></p>
+      </div>
+      <% if current_user == comment.user %>
+        <div class="col s1">
+          <%= link_to edit_comment_path(comment), class: "btn-floating green" do %>
+            <i class="material-icons">mode_edit</i>
+          <% end %>
+        </div>
+        <div class="col s1">
+          <%= link_to comment_path(comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?"}, class: "btn-floating red" do %>
+            <i class="material-icons">delete</i>
+          <% end %>
+        </div>
       <% end %>
     </div>
+  <% end %>
+  <div class="row">
+    <%= link_to "Add a comment", new_campground_comment_path(@campground) %>
+  </div>
 </div>
 
-<p><%= link_to "Back to all Campgrounds", campgrounds_path %>  
-      <% if current_user == @campground.user %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Edit Campground", edit_campground_path %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Delete Campground", campground_path(@campground), method: :delete, data: { confirm: "Are you sure you want to delete this campground?"} %>
-      <% end %>
-    </p>
-    <br>
+<% if current_user == @campground.user %>
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li>
+        <%= link_to edit_campground_path, class: "btn-floating green" do %>
+          <i class="material-icons">mode_edit</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to campground_path(@campground), method: :delete, data: { confirm: "Are you sure you want to delete this campground?"}, class: "btn-floating red darken-1" do %>
+          <i class="material-icons">delete</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+<% end %>
 
 <script>
   $(document).ready(function(){
     $('.materialboxed').materialbox();
+  });
+
+  var yesImpressions = <%= [@counts[:clean_yes], @counts[:crowded_yes], @counts[:privacy_yes], @counts[:shade_yes], @counts[:fire_yes]] %>;
+  console.log(yesImpressions)
+  var noImpressions = <%= [@counts[:clean_no], @counts[:crowded_no], @counts[:privacy_no], @counts[:shade_no], @counts[:fire_no]] %>;
+  console.log(noImpressions)
+
+  new Chartist.Pie('#chart1', {
+    series: [yesImpressions[0], noImpressions[0]]
+  }, {
+    donut: true,
+    donutWidth: 60,
+    startAngle: 270,
+    total: (yesImpressions[0] + noImpressions[0]),
+    showLabel: false
+  });
+  new Chartist.Pie('#chart2', {
+    series: [yesImpressions[1], noImpressions[1]]
+  }, {
+    donut: true,
+    donutWidth: 60,
+    startAngle: 270,
+    total: (yesImpressions[1] + noImpressions[1]),
+    showLabel: false
+  });
+  new Chartist.Pie('#chart3', {
+    series: [yesImpressions[2], noImpressions[2]]
+  }, {
+    donut: true,
+    donutWidth: 60,
+    startAngle: 270,
+    total: (yesImpressions[2] + noImpressions[2]),
+    showLabel: false
+  });
+  new Chartist.Pie('#chart4', {
+    series: [yesImpressions[3], noImpressions[3]]
+  }, {
+    donut: true,
+    donutWidth: 60,
+    startAngle: 270,
+    total: (yesImpressions[3] + noImpressions[3]),
+    showLabel: false
+  });
+  new Chartist.Pie('#chart5', {
+    series: [yesImpressions[4], noImpressions[4]]
+  }, {
+    donut: true,
+    donutWidth: 60,
+    startAngle: 270,
+    total: (yesImpressions[4] + noImpressions[4]),
+    showLabel: false
   });
 </script>
