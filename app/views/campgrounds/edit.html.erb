@@ -17,21 +17,41 @@
         </div>
       </div>
       <div class="row">
-        <%= f.label "Change main image", class: "col s12" %>
+        <div class="col s6">
+          <%= f.label "Change main image" %>
+          <div class="divider"></div>
+        </div>
+        <div class="col s6">
+          <%= f.label "Select images to delete"%>
+          <div class="divider"></div>
+        </div>
       </div>  
       <div class="row">
-        <% @campground.campground_images.each do |campground_image| %>
-          <p class="col s12">  
-            <%= radio_button_tag :main_image, campground_image[:id], campground_image[:main_image] %>
-            <%= f.label :main_image, for: "main_image_#{campground_image.id}" do %>
-              <%= image_tag campground_image.image.url(:thumb) %>
-            <% end %>
-          </p>
-        <% end %>
+        <div class="col s6">
+          <% @campground.campground_images.each do |campground_image| %>
+            <p class="col s12">  
+              <%= radio_button_tag :main_image, campground_image[:id], campground_image[:main_image] %>
+              <%= f.label :main_image, for: "main_image_#{campground_image.id}" do %>
+                <%= image_tag campground_image.image.url(:thumb) %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+        <div class="col s6">
+          <% @campground.campground_images.each do |campground_image| %>
+            <p class="col s12">  
+              <%= check_box_tag "remove[]", campground_image[:id], false, :id => "remove_#{campground_image.id}" %>
+              <%= f.label "remove[]", for: "remove_#{campground_image.id}" do %>
+                <%= image_tag campground_image.image.url(:thumb) %>
+              <% end %>
+            </p>
+          <% end %>
+        </div>
       </div>
       <div class="row">
         <%= f.label "Add photos", class: "col s12" %>
-      </div>  
+      </div>
+      <div class="divider"></div>  
       <div class="row">
         <div class="input-field file-field col s12">
           <div class="btn">

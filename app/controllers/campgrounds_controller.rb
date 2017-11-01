@@ -37,8 +37,15 @@ class CampgroundsController < ApplicationController
 
     if @campground.update_attributes(campground_params)
       params[:images].each { |image| @campground.campground_images.create(image: image) } if params[:images]
+
       @campground.campground_images.find_by(main_image: true).update_attributes(main_image: nil)
       CampgroundImage.find(params[:main_image]).update_attributes(main_image: true)
+
+      if params[:remove]
+        params[:remove].each do |id|
+          CampgroundImage.find(id).destroy if !CampgroundImage.find(id)[:main_image]
+        end
+      end
 
       redirect_to campground_path(params[:id])
     else
