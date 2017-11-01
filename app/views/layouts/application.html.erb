@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   </head>
@@ -14,9 +15,9 @@
   <body>
     <div class="navbar-fixed">
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper teal darken-3">
           <div class="container">
-            <a href="/" class="brand-logo"><i class="material-icons">icon</i>CampCollab</a>
+            <a href="/" class="brand-logo"><i class="material-icons">change_history</i>CampCollab</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <% if current_user %>
                 <li>Welcome, <%= current_user.first_name %></li>

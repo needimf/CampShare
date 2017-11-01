@@ -1,13 +1,4 @@
-<div class="row container">
-  <div class="col s12">
-    <h1>Campgrounds</h1>
-  </div>
-</div>
-<div class="row container">
-  <div class="col s12">
-    <p><%= alert %></p>
-  </div>
-</div>
+
 <% @campgrounds.each do |campground| %>
   <div class="parallax-container">
     <div class="parallax"><%= image_tag campground.campground_images.find_by(main_image: true).image.url %></div>
@@ -19,6 +10,8 @@
     </div>
   </div>
 <% end %>
-<div class="row container">
-  <%= button_to "Add a campground", new_campground_path, method: :get %>
+<div class="fixed-action-btn">
+  <%= link_to new_campground_path, class: "btn-floating btn-large teal darken-4" do %>
+    <i class="large material-icons">add</i>
+  <% end %>
 </div>
