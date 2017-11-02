@@ -21,7 +21,7 @@
   </div>
   <div class="row">
     <h5>By <%= @campground.user.full_name %></h5>
-    <p><%= simple_format(@campground.content) %>
+    <p class="flow-text"><%= simple_format(@campground.content) %></p>
   </div>
   <div class="divider"></div>
   <div class="row valign-wrapper">
@@ -42,8 +42,16 @@
   </div>
   <% @counts = @campground.count_impressions_totals %>
   <div class="row">
-    <div class="col s4">
-      <h5 class="col s12">Legend:</h5>
+    <div class="col s4 blue-grey lighten-5 center-align">
+      <div class="row legend">
+        <h5 id="legend" class="col s12">LEGEND</h5>
+      </div>
+      <div id="yes-legend" class="row legend">
+        <h5 class="col s12">YES</h5>
+      </div>
+      <div id="no-legend" class="row legend">
+        <h5 class="col s12">NO</h5>
+      </div>
     </div>
     <div class="col s4">
       <div class="row">
@@ -81,7 +89,7 @@
     </div>
     <div class="col s4">
       <div class="row">
-        <h5 class="col s12">Fire tolerant?</h5>
+        <h5 class="col s12">Fires OK?</h5>
       </div>
       <div class="row">
         <div class="ct-chart ct-golden-section col s12" id="chart5"></div>
@@ -154,65 +162,77 @@
 <script>
   $(document).ready(function(){
     $('.materialboxed').materialbox();
-  });
-
-  $(document).ready(function(){
     $('.modal').modal();
-  });
 
-  var yesImpressions = <%= [@counts[:clean_yes], @counts[:crowded_yes], @counts[:privacy_yes], @counts[:shade_yes], @counts[:fire_yes]] %>;
-  var noImpressions = <%= [@counts[:clean_no], @counts[:crowded_no], @counts[:privacy_no], @counts[:shade_no], @counts[:fire_no]] %>;
-  var sums = [];
-  function calculateImpressionsTotals () {
+    var yesImpressions = <%= [@counts[:clean_yes], @counts[:crowded_yes], @counts[:privacy_yes], @counts[:shade_yes], @counts[:fire_yes]] %>;
+    var noImpressions = <%= [@counts[:clean_no], @counts[:crowded_no], @counts[:privacy_no], @counts[:shade_no], @counts[:fire_no]] %>;
+
+    var sums = [];
     for (var i = 0; i < yesImpressions.length; i++) {
       sums.push(2 * (yesImpressions[i] + noImpressions [i]));
     };
-  }
-  calculateImpressionsTotals();
 
-  new Chartist.Pie('#chart1', {
-    series: [yesImpressions[0], noImpressions[0]]
-  }, {
-    donut: true,
-    donutWidth: 30,
-    startAngle: 270,
-    total: sums[0],
-    showLabel: true
-  });
-  new Chartist.Pie('#chart2', {
-    series: [yesImpressions[1], noImpressions[1]]
-  }, {
-    donut: true,
-    donutWidth: 30,
-    startAngle: 270,
-    total: sums[1],
-    showLabel: true
-  });
-  new Chartist.Pie('#chart3', {
-    series: [yesImpressions[2], noImpressions[2]]
-  }, {
-    donut: true,
-    donutWidth: 30,
-    startAngle: 270,
-    total: sums[2],
-    showLabel: true
-  });
-  new Chartist.Pie('#chart4', {
-    series: [yesImpressions[3], noImpressions[3]]
-  }, {
-    donut: true,
-    donutWidth: 30,
-    startAngle: 270,
-    total: sums[3],
-    showLabel: true
-  });
-  new Chartist.Pie('#chart5', {
-    series: [yesImpressions[4], noImpressions[4]]
-  }, {
-    donut: true,
-    donutWidth: 30,
-    startAngle: 270,
-    total: sums[4],
-    showLabel: true
+    var yesLabels = [];
+    yesImpressions.forEach(function(yesImpression) {
+      yesImpression === 0? yesLabels.push(' ') : yesLabels.push(yesImpression.toString());
+    });
+
+    var noLabels = [];
+    noImpressions.forEach(function(noImpression) {
+      noImpression === 0? noLabels.push(' ') : noLabels.push(noImpression.toString());
+    });
+
+    console.log(yesLabels)
+
+    new Chartist.Pie('#chart1', {
+      labels: [yesLabels[0], noLabels[0]],
+      series: [yesImpressions[0], noImpressions[0]]
+    }, {
+      donut: true,
+      donutWidth: 30,
+      startAngle: 270,
+      total: sums[0],
+      showLabel: true
+    });
+    new Chartist.Pie('#chart2', {
+      labels: [yesLabels[1], noLabels[1]],
+      series: [yesImpressions[1], noImpressions[1]]
+    }, {
+      donut: true,
+      donutWidth: 30,
+      startAngle: 270,
+      total: sums[1],
+      showLabel: true
+    });
+    new Chartist.Pie('#chart3', {
+      labels: [yesLabels[2], noLabels[2]],
+      series: [yesImpressions[2], noImpressions[2]]
+    }, {
+      donut: true,
+      donutWidth: 30,
+      startAngle: 270,
+      total: sums[2],
+      showLabel: true
+    });
+    new Chartist.Pie('#chart4', {
+      labels: [yesLabels[3], noLabels[3]],
+      series: [yesImpressions[3], noImpressions[3]]
+    }, {
+      donut: true,
+      donutWidth: 30,
+      startAngle: 270,
+      total: sums[3],
+      showLabel: true
+    });
+    new Chartist.Pie('#chart5', {
+      labels: [yesLabels[4], noLabels[4]],
+      series: [yesImpressions[4], noImpressions[4]]
+    }, {
+      donut: true,
+      donutWidth: 30,
+      startAngle: 270,
+      total: sums[4],
+      showLabel: true
+    });
   });
 </script>

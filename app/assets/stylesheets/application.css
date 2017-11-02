@@ -21,3 +21,20 @@
 .ct-series-a path {
   stroke: #009688 !important;
  }
+
+#yes-legend {
+  background-color: #009688
+}
+
+#no-legend {
+  background-color: #FF5722
+}
+
+#yes-legend, #no-legend {
+  color: white;
+}
+
+.legend {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
