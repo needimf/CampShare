@@ -10,11 +10,11 @@
       <div class="divider"></div>
       <div class="row">
         <p class="col s12">  
-          <%= f.radio_button :clean, 1 %>
+          <%= f.radio_button :clean, 1, required: true %>
           <%= f.label :clean, "Yes", for: "impression_clean_1" %>
         </p>
         <p class="col s12">
-          <%= f.radio_button :clean, -1 %>
+          <%= f.radio_button :clean, -1, required: true %>
           <%= f.label :clean, "No", for: "impression_clean_-1" %>
         </p>
       </div>
@@ -24,11 +24,11 @@
       <div class="divider"></div>
       <div class="row">
         <p class="col s12">  
-          <%= f.radio_button :crowded, 1 %>
+          <%= f.radio_button :crowded, 1, required: true %>
           <%= f.label :crowded, "Yes", for: "impression_crowded_1" %>
         </p>
         <p class="col s12">
-          <%= f.radio_button :crowded, -1 %>
+          <%= f.radio_button :crowded, -1, required: true %>
           <%= f.label :crowded, "No", for: "impression_crowded_-1" %>
         </p>
       </div>
@@ -38,11 +38,11 @@
       <div class="divider"></div>
       <div class="row">
         <p class="col s12">  
-          <%= f.radio_button :privacy, 1 %>
+          <%= f.radio_button :privacy, 1, required: true %>
           <%= f.label :privacy, "Yes", for: "impression_privacy_1" %>
         </p>
         <p class="col s12">
-          <%= f.radio_button :privacy, -1 %>
+          <%= f.radio_button :privacy, -1, required: true %>
           <%= f.label :privacy, "No", for: "impression_privacy_-1" %>
         </p>
       </div>
@@ -52,11 +52,11 @@
       <div class="divider"></div>
       <div class="row">
         <p class="col s12">  
-          <%= f.radio_button :shade, 1 %>
+          <%= f.radio_button :shade, 1, required: true %>
           <%= f.label :shade, "Yes", for: "impression_shade_1" %>
         </p>
         <p class="col s12">
-          <%= f.radio_button :shade, -1 %>
+          <%= f.radio_button :shade, -1, required: true %>
           <%= f.label :shade, "No", for: "impression_shade_-1" %>
         </p>
       </div>
@@ -66,11 +66,11 @@
       <div class="divider"></div>
       <div class="row">
         <p class="col s12">  
-          <%= f.radio_button :fire, 1 %>
+          <%= f.radio_button :fire, 1, required: true %>
           <%= f.label :fire, "Yes", for: "impression_fire_1" %>
         </p>
         <p class="col s12">
-          <%= f.radio_button :fire, -1 %>
+          <%= f.radio_button :fire, -1, required: true %>
           <%= f.label :fire, "No", for: "impression_fire_-1" %>
         </p>
       </div>
