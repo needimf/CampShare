@@ -5,7 +5,7 @@
   <div class="section white">
     <div class="row container">
       <h3 class="header"><%= campground.title %></h3>
-      <p class="grey-text"><%= campground.content %>...<%= link_to "Read more!", campground_path(campground) %></p>
+      <p class="grey-text"><%= truncate(campground.content, length: 500, separator: ' ') %><%= link_to "Read more!", campground_path(campground) %></p>
     </div>
   </div>
 <% end %>

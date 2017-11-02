@@ -64,17 +64,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s12">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Edit
+        <div class="col s3">
+          <button class="btn-large waves-effect waves-light" type="submit" name="action">Edit
             <i class="material-icons right">mode_edit</i>
           </button>
+        </div>
+        <div class="col s3">
+          <%= link_to campground_path(@campground), class: "btn-large waves-effect waves-light red" do %>
+            Cancel<i class="material-icons right">cancel</i>
+          <% end %>
         </div>
       </div>
     <% end %>
   </div>
-<p>
-  <%= link_to "Back to #{@campground.title}", campground_path(@campground) %>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <%= link_to "Back to all campgrounds", campgrounds_path %>
-</p>
 </div>
