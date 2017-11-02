@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row valign-wrapper">
     <div class="col s8">      
       <h1><%= @campground.title %></h1>
     </div>
@@ -23,17 +23,17 @@
     <h5>By <%= @campground.user.full_name %></h5>
     <p><%= simple_format(@campground.content) %>
   </div>
-  <div class="row">
-    <div class="col s6">
+  <div class="row valign-wrapper">
+    <div class="col s8">
      <h3>Impressions</h3>
     </div>
     <% if !current_user.nil? %>
       <% if current_user.impressions.find_by(campground_id: @campground) %>
-        <div class="col s6">
+        <div class="col s4">
           <%= link_to "Edit your impression!", edit_impression_path(current_user.impressions.find_by(campground_id: @campground)), class: "waves-effect waves-light btn" %>
         </div>
       <% else %>
-        <div class="col s6">
+        <div class="col s4">
           <%= link_to "Provide your impression!", new_campground_impression_path(@campground), class: "waves-effect waves-light btn" %>
         </div>
       <% end %>
@@ -95,7 +95,7 @@
     <div class="row section">
       <div class="col s3">
         <div class="chip">
-          <%= image_tag comment.user.image.url, alt: "Contact Person" %>
+          <%= image_tag comment.user.image.url(:thumb), alt: "Contact Person" %>
           <%= comment.user.full_name %>
         </div>        
       </div>

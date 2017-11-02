@@ -9,30 +9,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
   </head>
 
   <body>
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper teal darken-3">
-          <div class="container">
-            <a href="/" class="brand-logo"><i class="material-icons">change_history</i>CampCollab</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <% if current_user %>
-                <li>Welcome, <%= current_user.first_name %></li>
-                <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
-              <% else %>
-                <li><%= link_to 'Log In', login_path %></li>
-                <li><%= link_to 'Sign Up', new_user_path %></li>
-              <% end %>
-            </ul>
+    <header>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper teal darken-3">
+            <div class="container">
+              <a href="/" class="brand-logo"><img src="https://i.imgur.com/FqfTksu.png">&nbsp;CampCollab</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <% if current_user %>
+                  <li>Welcome, <%= current_user.first_name %></li>
+                  <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
+                <% else %>
+                  <li><%= link_to 'Log In', login_path %></li>
+                  <li><%= link_to 'Sign Up', new_user_path %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
-    <%= yield %>
+        </nav>
+      </div>
+    </header>
+    </main>
+      <%= yield %>
+    </main>
   </body>
 </html>
