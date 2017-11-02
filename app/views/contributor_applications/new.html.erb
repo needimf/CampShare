@@ -1,7 +1,27 @@
-<h1>Become a Contributor!</h1>
-
-<%= form_for [@user, @contributor_application] do |f| %>
-  <%= f.label :content, "Why do you want to become a contributor?" %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h1>Become a Contributor!</h1>
+  </div>
+  <div class="row">
+    <%= form_for [@user, @contributor_application], class: "col s12" do |f| %>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :content, class: "materialize-textarea", required: true %>
+          <%= f.label :content, "Why do you want to become a contributor?", class: "active" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3">
+          <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+        <div class="col s3">
+          <%= link_to root_path, class: "btn-large waves-effect waves-light red" do %>
+            Cancel<i class="material-icons right">cancel</i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

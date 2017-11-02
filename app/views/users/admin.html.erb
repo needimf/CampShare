@@ -1,14 +1,30 @@
-<h1>Pending Contributor Applications</h1>
-
 <div class="container">
-  <% @pending_contributor_applications.each do |app| %>
-    <div class="row">
-      <div class="col s4"><%= app.user.full_name %></div>
-      <div class="col s6"><%= app.content %></div>
-      <div class="col s2">
-        <%= link_to "Yes", contributor_application_path(app, approved: "yes"), method: :put %>
-        <%= link_to "No", contributor_application_path(app, approved: "no"), method: :put %>
-      </div>
-    </div>
-  <% end %>
+  <div class="row">
+    <h1>Pending Contributor Applications</h1>
+  </div> 
+  <div class="row">
+    <table class="col s12 highlight responsive-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Essay</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pending_contributor_applications.each do |app| %>
+          <tr>
+            <td><%= app.user.full_name %></td>
+            <td><%= simple_format(app.content) %></td>
+            <td>
+              <%= link_to "Yes", contributor_application_path(app, approved: "yes"), method: :put, class: "btn waves-effect waves-light green" %>
+            </td>
+            <td>
+              <%= link_to "No", contributor_application_path(app, approved: "no"), method: :put, class: "btn waves-effect waves-light red" %>
+            </td>
+          </tr>    
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ .ct-series-b path {
+   stroke: #FF5722 !important;
+}
+
+.ct-series-a path {
+  stroke: #009688 !important;
+ }

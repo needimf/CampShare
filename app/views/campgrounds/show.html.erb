@@ -23,6 +23,7 @@
     <h5>By <%= @campground.user.full_name %></h5>
     <p><%= simple_format(@campground.content) %>
   </div>
+  <div class="divider"></div>
   <div class="row valign-wrapper">
     <div class="col s8">
      <h3>Impressions</h3>
@@ -39,14 +40,14 @@
       <% end %>
     <% end %>
   </div>
-  <div class="row">
-    <h5 class="col s12">Is this campground...</h5>
-  </div>
   <% @counts = @campground.count_impressions_totals %>
   <div class="row">
     <div class="col s4">
+      <h5 class="col s12">Legend:</h5>
+    </div>
+    <div class="col s4">
       <div class="row">
-        <h6 class="col s12">...clean?</h6>
+        <h5 class="col s12">Clean?</h5>
       </div>
       <div class="row">
         <div class="ct-chart ct-golden-section col s12" id="chart1"></div>
@@ -54,25 +55,25 @@
     </div>
     <div class="col s4">
       <div class="row">
-        <h6 class="col s12">...crowded?</h6>
+        <h5 class="col s12">Crowded?</h5>
       </div>
       <div class="row">
         <div class="ct-chart ct-golden-section col s12" id="chart2"></div>
       </div>
     </div>
+  </div>
+  <div class="row">
     <div class="col s4">
       <div class="row">
-        <h6 class="col s12">...private?</h6>
+        <h5 class="col s12">Private?</h5>
       </div>
       <div class="row">
         <div class="ct-chart ct-golden-section col s12" id="chart3"></div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col s4 offset-s2 ">
+    <div class="col s4">
       <div class="row">
-        <h6 class="col s12">...shaded?</h6>
+        <h5 class="col s12">Shaded?</h5>
       </div>
       <div class="row">
         <div class="ct-chart ct-golden-section col s12" id="chart4"></div>
@@ -80,13 +81,14 @@
     </div>
     <div class="col s4">
       <div class="row">
-        <h6 class="col s12">...fire tolerant?</h6>
+        <h5 class="col s12">Fire tolerant?</h5>
       </div>
       <div class="row">
         <div class="ct-chart ct-golden-section col s12" id="chart5"></div>
       </div>
     </div>
   </div>
+  <div class="divider"></div>
   <div class="row">
     <h3 class="col s12">Comments</h3>
   </div>
@@ -123,7 +125,7 @@
 
 <% if current_user == @campground.user %>
   <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red">
+    <a class="btn-floating btn-large teal accent-4">
       <i class="large material-icons">menu</i>
     </a>
     <ul>
@@ -154,8 +156,7 @@
     $('.materialboxed').materialbox();
   });
 
-    $(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+  $(document).ready(function(){
     $('.modal').modal();
   });
 

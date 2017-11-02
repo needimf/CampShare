@@ -4,7 +4,6 @@
     <title>CampCrud</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -23,7 +23,14 @@
               <img src="https://i.imgur.com/J9p032Q.png"><a href="/" class="brand-logo left">CAMPshare</a>
               <ul id="nav-mobile" class="right">
                 <% if current_user %>
-                  <li class="hide-on-small-only">Welcome, <%= current_user.first_name %></li>
+                  <li><a>Welcome, <%= current_user.first_name %></a></li>
+                  <% if !current_user.contributor %>
+                    <% if !current_user.contributor_applications.empty? && current_user.contributor_applications.last.pending %>
+                      <li><a>Contributor Status: PENDING</a></li>
+                    <% else %>
+                      <li><%= link_to 'Become a contributor!', new_user_contributor_application_path(current_user) %></li>
+                    <% end %>
+                  <% end %>
                   <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
                 <% else %>
                   <li><%= link_to 'Log In', login_path %></li>
