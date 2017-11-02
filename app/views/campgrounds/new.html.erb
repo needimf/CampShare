@@ -6,13 +6,13 @@
     <%= form_for @campground, class: "col s12", html: { multipart: true } do |f| %>
       <div class="row">
         <div class="input-field col s12">
-          <%= f.text_field :title %>
+          <%= f.text_field :title, required: true %>
           <%= f.label :title, class: "active" %>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <%= f.text_area :content, class: "materialize-textarea" %>
+          <%= f.text_area :content, class: "materialize-textarea", required: true %>
           <%= f.label :content, class: "active" %>
         </div>
       </div>
@@ -25,7 +25,7 @@
         <div class="input-field file-field col s12">
           <div class="btn">
             <span>Select Images</span>
-            <%= file_field_tag "images[]", type: :file, multiple: true %>
+            <%= file_field_tag "images[]", type: :file, multiple: true, required: true %>
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -34,9 +34,16 @@
       </div>
       <div class="row">
         <div class="col s12">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Create Campground!</button>
+          <button id ="create-campground" class="btn waves-effect waves-light" type="submit" name="action">Create Campground!</button>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+
+<script>
+//   $('#create-campground').on('click', function() {
+//     $('.preloader-wrapper').addClass('active')
+//   })
+// </script>
