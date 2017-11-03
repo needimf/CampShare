@@ -4,26 +4,22 @@
 
 ## Overview
 
-Placeholder
+CampShare is an outdoors-focused media platform that will help you find new campgrounds to explore! Users can find, read about, comment on, and provide their own impressions of campgrounds across the country.
+
+If you're particularly keen on the outdoors, you have the choice to apply to become a contributor. Contributors create campground posts with personal descriptions and original photos. Contributors are the foundation of CampShare!
 
 **Join the adventure here:** https://campshare.herokuapp.com/
 
 ### Screenshots
 
-<img src="https://i.imgur.com/lXMG1DM.png"
-     alt="Minesweeper mockup on MacBook"
+<img src="https://i.imgur.com/eeXmhxX.png"
+     alt="CampShare main page"
      style="margin: 0 auto; max-width: 80%;" />
 
 ---
 
-<img src="https://i.imgur.com/YHbno38.png"
-     alt="Minesweeper mainscreen"
-     style="margin: 0 auto; max-width: 80%;" />
-
----
-
-<img src="https://i.imgur.com/HbRmzA7.png"
-     alt="Minesweeper game winner message"
+<img src="https://i.imgur.com/NS0IZWN.png"
+     alt="CampShare impressions example"
      style="margin: 0 auto; max-width: 80%;" />
 
 ---
@@ -62,6 +58,7 @@ Join online here: https://campshare.herokuapp.com/
 
 ## Future Steps
 
-- Updating responsive design for mobile users, especially long-click functionality for iOS users
-- Implementing a win/loss counter, and high-score functionality
-- Creating a tutorial feature that utilizes an AI that can demonstrate gameplay
+- Updating responsive design for mobile users
+- Implementing campground search and "sort-by" functionality 
+- Enabling users to post photos in their comments
+- Implementing a mailer that notifies contributors of accepted or rejected applications
