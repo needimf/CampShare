@@ -4,7 +4,7 @@
   </div>
   <div class="row">    
     <%= form_for @user, html: { multipart: true }, class: "col s12" do |f| %>
-      <div class="row">
+     <div class="row">
         <% if @user.errors.any? %>
           <div class="error_messages col s12">
             <ul>
@@ -14,32 +14,32 @@
             </ul>
           </div>
         <% end %>
-      </div>
+      </div> 
       <div class="row">
         <div class="input-field col s6">
-        <%= f.text_field :first_name %>
+        <%= f.text_field :first_name, required: true %>
         <%= f.label :first_name %>
         </div>
         <div class="input-field col s6">
-        <%= f.text_field :last_name %>
+        <%= f.text_field :last_name, required: true %>
         <%= f.label :last_name %>
         </div>
       </div> 
       <div class="row">
         <div class="input-field col s12">
-        <%= f.text_field :email %>
-        <%= f.label :email %>
+        <%= f.email_field :email, required: true, class: "validate" %>
+        <%= f.label :email, 'data-error' => 'Not a valid email address' %>
         </div>
       </div> 
       <div class="row">
         <div class="input-field col s12">
-        <%= f.password_field :password %>
+        <%= f.password_field :password, required: true, minlength: "6" %>
         <%= f.label :password %>
         </div>
       </div> 
       <div class="row">
         <div class="input-field col s12">
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation, required: true %>
         <%= f.label :password_confirmation %>
         </div>
       </div>

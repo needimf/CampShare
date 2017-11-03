@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def admin
-    @pending_contributor_applications = ContributorApplication.all.where(pending: true)
+    @pending_contributor_applications = ContributorApplication.where(pending: true)
   end
 
 private

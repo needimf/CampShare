@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :impressions, dependent: :destroy
   has_many :contributor_applications, dependent: :destroy
 
-  has_attached_file :image, styles: { medium: "500x500>", thumb: "100x100>" }, presence: true
+  has_attached_file :image, styles: { medium: "500x500>", thumb: "100x100>" }, presence: true, default_url: "https://i.imgur.com/KyKTnXJ.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   #security and validations
