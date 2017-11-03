@@ -49,6 +49,6 @@ private
   end
 
   def authorize_add_impression
-    redirect_to campground_path(params[:campground_id]), alert: "Not authorized - you have already submitted an impression for this campground!" if has_impression?
+    redirect_to campground_path(params[:campground_id]) if has_impression?
   end
 end

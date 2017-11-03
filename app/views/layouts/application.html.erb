@@ -23,10 +23,10 @@
               <a href="/" class="brand-logo left"><img src="https://i.imgur.com/J9p032Q.png"></a>
               <ul id="nav-mobile" class="right">
                 <% if current_user %>
-                  <li><a>Welcome, <%= current_user.first_name %></a></li>
+                  <li>Welcome, <%= current_user.first_name %>&nbsp;</li>
                   <% if !current_user.contributor %>
                     <% if !current_user.contributor_applications.empty? && current_user.contributor_applications.last.pending %>
-                      <li><a>Contributor Status: PENDING</a></li>
+                      <li>&nbsp;Contributor Status: Pending</li>
                     <% else %>
                       <li><%= link_to 'Become a contributor!', new_user_contributor_application_path(current_user) %></li>
                     <% end %>

@@ -8,7 +8,7 @@
         <tr>
           <th>Name</th>
           <th>Essay</th>
-          <th>Actions</th>
+          <th>Decision</th>
         </tr>
       </thead>
       <tbody>
@@ -17,10 +17,8 @@
             <td><%= app.user.full_name %></td>
             <td><%= simple_format(app.content) %></td>
             <td>
-              <%= link_to "Yes", contributor_application_path(app, approved: "yes"), method: :put, class: "btn waves-effect waves-light green" %>
-            </td>
-            <td>
-              <%= link_to "No", contributor_application_path(app, approved: "no"), method: :put, class: "btn waves-effect waves-light red" %>
+              <%= link_to "Accept", contributor_application_path(app, approved: "yes"), method: :put, class: "btn waves-effect waves-light green" %>
+              <%= link_to "Deny", contributor_application_path(app, approved: "no"), method: :put, class: "btn waves-effect waves-light red" %>
             </td>
           </tr>    
         <% end %>

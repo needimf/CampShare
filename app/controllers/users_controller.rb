@@ -27,6 +27,6 @@ private
   end
 
   def authorize_admin
-    redirect_to root_path, alert: "Not authorized - you must be admin!" if current_user.nil? || !current_user.admin
+    redirect_to root_path if current_user.nil? || !current_user.admin
   end
 end

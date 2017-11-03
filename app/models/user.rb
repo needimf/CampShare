@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_attached_file :image, styles: { medium: "500x500>", thumb: "100x100>" }, presence: true, default_url: "https://i.imgur.com/KyKTnXJ.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  #security and validations
   has_secure_password
   validates :email, presence: true, uniqueness: true, on: :create
   validates :password, length: { minimum: 6 }, on: :create

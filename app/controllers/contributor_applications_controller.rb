@@ -1,6 +1,6 @@
 class ContributorApplicationsController < ApplicationController
   def new
-    redirect_to login_path, alert: "You already have a pending application!" if pending_apps?
+    redirect_to root_path if pending_apps? || current_user.contributor
     @user = current_user
     @contributor_application = ContributorApplication.new
   end

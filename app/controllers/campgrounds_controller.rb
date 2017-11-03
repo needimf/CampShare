@@ -67,10 +67,10 @@ private
   end
 
   def authorize_contributor
-    redirect_to root_path, alert: "You are not a contributor" if !current_user.contributor
+    redirect_to root_path if !current_user.contributor
   end
 
   def authorize_edit
-    redirect_to campground_path(params[:id]), alert: "Not authorized - you did not author this campground!" if current_user != Campground.find(params[:id]).user
+    redirect_to campground_path(params[:id]) if current_user != Campground.find(params[:id]).user
   end
 end
