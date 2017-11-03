@@ -40,7 +40,11 @@
       <% end %>
     <% end %>
   </div>
-  <% if @campground.impressions.empty? %>
+  <% if current_user.nil? %>
+    <div class="row">
+      <h4 class="col s12">No impressions submitted yet...login or sign up to be the first!</h4>
+    </div>
+  <% elsif @campground.impressions.empty? %>
     <div class="row">
       <h4 class="col s12">No impressions submitted yet, be the first!</h4>
     </div>
@@ -155,19 +159,21 @@
     <% end %>
   <% end %>
   <div class="divider"></div>
-  <div class="row">
-    <%= form_for [@campground, @comment], class: "col s12" do |f| %>
-      <div class="row valign-wrapper">
-        <div class="input-field col s10">
-          <%= f.text_area :content, class: "materialize-textarea", required: true %>
-          <%= f.label :content, "Write your comment here..." %>
+  <% if !current_user.nil? %>
+    <div class="row">
+      <%= form_for [@campground, @comment], class: "col s12" do |f| %>
+        <div class="row valign-wrapper">
+          <div class="input-field col s10">
+            <%= f.text_area :content, class: "materialize-textarea", required: true %>
+            <%= f.label :content, "Write your comment here..." %>
+          </div>
+          <div class="col s2">
+            <button class="btn waves-effect waves-light col s12 blue-grey" type="submit" name="action">Comment</button>
+          </div>
         </div>
-        <div class="col s2">
-          <button class="btn waves-effect waves-light col s12 blue-grey" type="submit" name="action">Comment</button>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <% if current_user == @campground.user %>
