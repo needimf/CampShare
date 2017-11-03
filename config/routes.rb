@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :campgrounds do
-    resources :comments, except: [:index, :show], shallow: true
-    resources :impressions, except: [:show], shallow: true
+    resources :comments, except: [:index, :show, :new, :edit], shallow: true
+    resources :impressions, except: [:show, :index, :destroy], shallow: true
   end
   get '/login', to: 'sessions#new'
   get '/admin', to: 'users#admin', as: :admin

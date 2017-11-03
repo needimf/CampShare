@@ -5,14 +5,15 @@
   <div class="section white">
     <div class="row container">
       <h3 class="header"><%= campground.title %></h3>
-      <p class="grey-text"><%= truncate(campground.content, length: 1000, separator: ' ') %><%= link_to "Read more!", campground_path(campground) %></p>
+      <p class="grey-text"><%= truncate(campground.content, length: 1000, separator: ' ') %></p>
+      <%= link_to "Read more!", campground_path(campground), class: "waves-effect waves-teal btn-flat" %>
     </div>
   </div>
 <% end %>
 
 <% if !current_user.nil? && current_user.contributor %>
   <div class="fixed-action-btn">
-    <%= link_to new_campground_path, class: "btn-floating btn-large modal-trigger teal darken-4" do %>
+    <%= link_to new_campground_path, class: "btn-floating btn-large modal-trigger blue-grey darken-2" do %>
       <i class="large material-icons">add</i>
     <% end %>
   </div>

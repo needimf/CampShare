@@ -4,7 +4,7 @@
       <h1><%= @campground.title %></h1>
     </div>
     <div class="col s4">
-      <%= link_to "Back to all Campgrounds", campgrounds_path, class: "waves-effect waves-light btn" %>
+      <%= link_to "Back to all Campgrounds", campgrounds_path, class: "waves-effect waves-light btn blue-grey" %>
     </div>
   </div>
   <div class="row">
@@ -31,11 +31,11 @@
     <% if !current_user.nil? %>
       <% if current_user.impressions.find_by(campground_id: @campground) %>
         <div class="col s4">
-          <%= link_to "Edit your impression!", edit_impression_path(current_user.impressions.find_by(campground_id: @campground)), class: "waves-effect waves-light btn" %>
+          <%= link_to "Edit your impression!", edit_impression_path(current_user.impressions.find_by(campground_id: @campground)), class: "waves-effect waves-light btn blue-grey" %>
         </div>
       <% else %>
         <div class="col s4">
-          <%= link_to "Provide your impression!", new_campground_impression_path(@campground), class: "waves-effect waves-light btn" %>
+          <%= link_to "Provide your impression!", new_campground_impression_path(@campground), class: "waves-effect waves-light btn blue-grey" %>
         </div>
       <% end %>
     <% end %>
@@ -47,7 +47,7 @@
   <% else %>
   <% @counts = @campground.count_impressions_totals %>
     <div class="row">
-      <div class="col s4 blue-grey lighten-5 center-align">
+      <div class="col s4 blue-grey lighten-2 center-align">
         <div class="row legend">
           <h5 id="legend" class="col s12">LEGEND</h5>
         </div>
@@ -130,20 +130,15 @@
     <% if current_user == comment.user %>
       <div id="<%= "edit-comment-#{comment.id}" %>" class="row" style="display:none;">
         <%= form_for comment, class: "col s12" do |f| %>
-          <div class="row">
+          <div class="row valign-wrapper">
             <div class="input-field col s10">
               <%= f.text_area :content, class: "materialize-textarea", required: true %>
               <%= f.label :content, "Comment text", class: "active" %>
             </div>
             <div class="col s2">
-              <div class="row">
-                <button class="btn waves-effect waves-light col s12 green" type="submit" name="action">Edit
-                  <i class="material-icons right">mode_edit</i>
-                </button>
-              </div>
-              <div class="row">
-                <a id="<%= "cancel-comment-#{comment.id}" %>" class="btn waves-effect waves-light red col s12">Cancel<i class="material-icons right">cancel</i></a>
-              </div>
+              <button class="btn waves-effect waves-light col s12 green" type="submit" name="action">Edit
+                <i class="material-icons right">mode_edit</i>
+              </button>
             </div>
           </div>
         <% end %>
@@ -168,7 +163,7 @@
           <%= f.label :content, "Write your comment here..." %>
         </div>
         <div class="col s2">
-          <button class="btn waves-effect waves-light col s12 green" type="submit" name="action">Comment</button>
+          <button class="btn waves-effect waves-light col s12 blue-grey" type="submit" name="action">Comment</button>
         </div>
       </div>
     <% end %>
@@ -177,7 +172,7 @@
 
 <% if current_user == @campground.user %>
   <div class="fixed-action-btn">
-    <a class="btn-floating btn-large teal accent-4">
+    <a class="btn-floating btn-large blue-grey darken-2">
       <i class="large material-icons">menu</i>
     </a>
     <ul>
@@ -281,11 +276,7 @@
     <% end %> 
 
     $("[id^=comment-]").click(function(evt) {
-      $(`#edit-${evt.currentTarget.id}`).show()
-    });
-
-    $("[id^=cancel-comment-]").click(function(evt) {
-      $(`#edit-${evt.currentTarget.id.replace('cancel-','')}`).hide()
-    });   
+      $(`#edit-${evt.currentTarget.id}`).toggle()
+    });  
   });
 </script>

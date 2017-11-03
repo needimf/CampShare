@@ -3,10 +3,6 @@ class ImpressionsController < ApplicationController
   before_action :authorize_add_impression, only: [:new]
   before_action :authorize_edit, except: [:new, :create]
 
-  def index
-
-  end
-
   def new
     @campground = Campground.find(params[:campground_id])
     @impression = Impression.new
@@ -36,13 +32,6 @@ class ImpressionsController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def destroy
-    @impression = Impression.find(params[:id])
-    @campground = @impression.campground
-    @impression.destroy
-    redirect_to campground_path(@campground)
   end
 
 private

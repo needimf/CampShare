@@ -1,11 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authorize
-  before_action :authorize_edit, except: [:new, :create]
-
-  def new
-    @campground = Campground.find(params[:campground_id])
-    @comment = Comment.new
-  end
+  before_action :authorize_edit, except: [:create]
 
   def create
     @campground = Campground.find(params[:campground_id])
@@ -18,10 +13,6 @@ class CommentsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
