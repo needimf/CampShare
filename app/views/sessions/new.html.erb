@@ -3,7 +3,9 @@
     <h1 class="col s12">Log In!</h1>
   </div>
   <div class="row">  
-    <p id="alert" class="col s12"><%= alert %></p>
+    <blockquote id="alert" class="col s12">
+      <%= alert %>
+    </blockquote>
   </div>
   <div class="row">
     <%= form_tag sessions_path, class: "col s12" do %>

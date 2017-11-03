@@ -6,13 +6,13 @@
     <%= form_for @user, html: { multipart: true }, class: "col s12" do |f| %>
      <div class="row">
         <% if @user.errors.any? %>
-          <div class="error_messages col s12">
-            <ul>
+          <blockquote class="error_messages col s12">
+            <ul>  
               <% for message in @user.errors.full_messages %>
                 <li><%= message %></li>
               <% end %>
             </ul>
-          </div>
+          </blockquote>
         <% end %>
       </div> 
       <div class="row">
