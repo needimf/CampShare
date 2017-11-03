@@ -18,6 +18,12 @@ If you're particularly keen on the outdoors, you have the choice to apply to bec
 
 ---
 
+<img src="https://i.imgur.com/BBInO1C.png"
+     alt="CampShare campground example"
+     style="margin: 0 auto; max-width: 80%;" />
+
+---
+
 <img src="https://i.imgur.com/NS0IZWN.png"
      alt="CampShare impressions example"
      style="margin: 0 auto; max-width: 80%;" />
@@ -37,7 +43,7 @@ If you're particularly keen on the outdoors, you have the choice to apply to bec
 
 ## The Design
 
-User stories and planning documents can be found at: [Trello Planning Board](https://trello.com/b/8PT5b0s0/camp-crud-app)
+User stories and planning documents can be found at: [CampShare Planning Board](https://trello.com/b/8PT5b0s0/camp-crud-app)
 
 ---
 
