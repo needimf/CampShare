@@ -56,7 +56,7 @@ User stories and planning documents can be found at: [Trello Planning Board](htt
 
 ### OR
 
-Play online here: needimf.github.io/minesweeper/
+Join online here: https://campshare.herokuapp.com/
 
 ---
 

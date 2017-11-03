@@ -40,11 +40,7 @@
       <% end %>
     <% end %>
   </div>
-  <% if current_user.nil? %>
-    <div class="row">
-      <h4 class="col s12">No impressions submitted yet...login or sign up to be the first!</h4>
-    </div>
-  <% elsif @campground.impressions.empty? %>
+  <% if @campground.impressions.empty? %>
     <div class="row">
       <h4 class="col s12">No impressions submitted yet, be the first!</h4>
     </div>
