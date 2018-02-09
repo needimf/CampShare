@@ -53,8 +53,14 @@ User stories and planning documents can be found at: [CampShare Planning Board](
 2. Create the database: ```rails db:create```
 3. Migrate the database: ```rails db:migrate```
 4. Seed the database: ```rails db:seed```
-5. Run the rails server: ```rails s```
-6. Connect to rails server from the browser: ```localhost:3000```
+5. Create config/application.yml and include your AWS keys:
+```
+AWS_ACCESS_KEY_ID: "<YOUR KEY>"
+AWS_SECRET_ACCESS_KEY: "<YOUR KEY>"
+AWS_S3_BUCKET: "<YOUR BUCKET>"
+```
+6. Run the rails server: ```rails s```
+7. Connect to rails server from the browser: ```localhost:3000```
 
 ### OR
 
